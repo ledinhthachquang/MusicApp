@@ -1,5 +1,6 @@
 package com.example.appnhac.Fragment;
 
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +12,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.appnhac.R;
 
-public class Fragment_Home extends Fragment {
+public class Fragment_Banner extends Fragment {
     View view;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home,container,false);
+        view = inflater.inflate(R.layout.fragment_banner,container,false);
         return view;
     }
 }
