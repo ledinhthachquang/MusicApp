@@ -16,9 +16,9 @@ public class APIRetrofitClient {
 
     public static Retrofit getClient(String base_url){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                                        .readTimeout(10000, TimeUnit.MICROSECONDS)
-                                        .writeTimeout(10000, TimeUnit.MICROSECONDS)
-                                        .connectTimeout(10000,TimeUnit.MICROSECONDS)
+                                        .readTimeout(1000000, TimeUnit.MICROSECONDS)
+                                        .writeTimeout(1000000, TimeUnit.MICROSECONDS)
+                                        .connectTimeout(1000000,TimeUnit.MICROSECONDS)
                                         .retryOnConnectionFailure(true)
                                         .protocols(Arrays.asList(Protocol.HTTP_1_1))
                                         .build();
