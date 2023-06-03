@@ -35,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/imageviewbanner"
-            android:text="Lo yeu mat roi"
             android:textColor="#ffffff"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -50,7 +49,6 @@
             <TextView
                 android:id="@+id/textviewnoidung"
                 android:textColor="#fffdfc"
-                android:text="Chao ban den voi ca khuc moi cua ca sy hot nhat hien nay"
                 android:layout_marginRight="40dp"
                 android:maxLines="2"
                 android:textSize="13sp"

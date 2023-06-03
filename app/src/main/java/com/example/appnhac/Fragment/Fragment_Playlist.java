@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.appnhac.Adapter.PlayListAdapter;
 import com.example.appnhac.Model.Playlist;
 import com.example.appnhac.R;
 import com.example.appnhac.Service.APIRetrofitClient;
@@ -26,12 +29,19 @@ import retrofit2.Response;
 
 public class Fragment_Playlist extends Fragment {
     View view;
+    ListView lvplaylist;
+    TextView txtviewplaylist, txtviewmoreplaylist;
+    PlayListAdapter playListAdapter;
+    ArrayList<Playlist> mangplaylist;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_playlist, container, false);
+        lvplaylist = view.findViewById(R.id.listviewplaylist);
+        txtviewplaylist = view.findViewById(R.id.textviewplaylist);
+        txtviewmoreplaylist = view.findViewById(R.id.textviewviewmoreplaylist);
         getData();
         return view;
     }
@@ -42,7 +52,9 @@ public class Fragment_Playlist extends Fragment {
         callback.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
-                ArrayList<Playlist> mangplaylist = (ArrayList<Playlist>) response.body();
+             mangplaylist = (ArrayList<Playlist>) response.body();
+             playListAdapter = new PlayListAdapter(getActivity(), android.R.layout.simple_list_item_1,mangplaylist);
+             lvplaylist.setAdapter(playListAdapter);
 
             }
 
