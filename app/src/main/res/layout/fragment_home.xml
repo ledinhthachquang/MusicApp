@@ -18,5 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_banner" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentplaylist"
+            android:name="com.example.appnhac.Fragment.Fragment_Playlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_banner" />
     </LinearLayout>
 </ScrollView>
