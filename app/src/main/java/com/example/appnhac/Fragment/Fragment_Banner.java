@@ -58,6 +58,7 @@ public class Fragment_Banner extends Fragment {
                 ArrayList<Quangcao> banners = (ArrayList<Quangcao>) response.body();
                 bannerAdapter = new BannerAdapter(getActivity(),banners);
                 viewPager2.setAdapter(bannerAdapter);
+                viewPager2.setCurrentItem(0,true);
                 handler= new Handler();
                 runnable = new Runnable() {
                     @Override

@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".Fragment.Fragment_Playlist">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+        android:id="@+id/textviewplaylist"
+        android:textColor="#3e3b3b"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/play_list_today" />
+
+    <ListView
+        android:layout_below="@id/textviewplaylist"
+        android:id="@+id/listviewplaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textviewviewmoreplaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listviewplaylist"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="15dp"
+        android:drawableLeft="@drawable/more"
+        android:drawablePadding="10dp"
+        android:text="@string/view_more"
+        android:textColor="#3e3b3b"
+        android:textSize="20sp"/>
+
+
+</RelativeLayout>
