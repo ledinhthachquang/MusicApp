@@ -30,5 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_chu_de_va_the_loai" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentalbum"
+            android:name="com.example.appnhac.Fragment.Fragment_Album_Hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_banner" />
     </LinearLayout>
 </ScrollView>
