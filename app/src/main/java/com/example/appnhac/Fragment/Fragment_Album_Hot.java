@@ -5,11 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appnhac.Adapter.AlbumAdapter;
 import com.example.appnhac.Model.Album;
 import com.example.appnhac.R;
 import com.example.appnhac.Service.APIService;
@@ -24,10 +29,18 @@ import retrofit2.Response;
 
 public class Fragment_Album_Hot extends Fragment {
     View view;
+    RecyclerView recyclerViewalbum;
+    TextView txtxemthemalbum;
+
+    AlbumAdapter albumAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_album_hot,container,false);
+        recyclerViewalbum = view.findViewById(R.id.recyclerviewAlbum);
+        txtxemthemalbum = view.findViewById(R.id.textviewxemthemAlbum);
+
         GetData();
         return view;
     }
@@ -39,7 +52,11 @@ public class Fragment_Album_Hot extends Fragment {
             @Override
             public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
                 ArrayList<Album> albumArrayList = (ArrayList<Album>) response.body();
-                Log.d("BBB",albumArrayList.get(0).getTenAlbum());
+                albumAdapter = new AlbumAdapter(getActivity(),albumArrayList);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerViewalbum.setLayoutManager(linearLayoutManager);
+                recyclerViewalbum.setAdapter(albumAdapter);
             }
 
             @Override
