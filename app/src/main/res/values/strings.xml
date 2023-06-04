@@ -4,4 +4,7 @@
     <string name="play_list_today">Playlist đề xuất</string>
     <string name="view_more">Xem thêm</string>
     <string name="button_playlist">Button playlist</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chudetheloai">CHỦ ĐỀ VÀ THỂ LOẠI</string>
 </resources>
