@@ -7,6 +7,8 @@ import com.example.appnhac.Model.Album;
 
 import com.example.appnhac.Model.Quangcao;
 import com.example.appnhac.Model.Playlist;
+import com.example.appnhac.Model.SongWithHeart;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,5 +27,8 @@ public interface Dataservice {
 
     @GET("albumhot.php")
     Call<List<Album>> GetAlbumHot();
+
+    @GET("baihatduocthich.php")
+    Call<List<SongWithHeart>> GetBaiHatHot();
 
 }
