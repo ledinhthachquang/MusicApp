@@ -1,11 +1,9 @@
 package com.example.appnhac.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appnhac.Adapter.BaihathotAdapter;
-import com.example.appnhac.Model.SongWithHeart;
+import com.example.appnhac.Model.Baihat;
 import com.example.appnhac.R;
 import com.example.appnhac.Service.APIService;
 import com.example.appnhac.Service.Dataservice;
@@ -41,11 +39,11 @@ public class Fragment_Bai_Hat_Hot extends Fragment {
 
     private void GetData() {
         Dataservice dataservice = APIService.getService();
-        Call<List<SongWithHeart>> callback = dataservice.GetBaiHatHot();
-        callback.enqueue(new Callback<List<SongWithHeart>>() {
+        Call<List<Baihat>> callback = dataservice.GetBaiHatHot();
+        callback.enqueue(new Callback<List<Baihat>>() {
             @Override
-            public void onResponse(Call<List<SongWithHeart>> call, Response<List<SongWithHeart>> response) {
-                ArrayList<SongWithHeart> baihatArrayList = (ArrayList<SongWithHeart>) response.body();
+            public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
+                ArrayList<Baihat> baihatArrayList = (ArrayList<Baihat>) response.body();
                 baihathotAdapter = new BaihathotAdapter(getActivity(),baihatArrayList);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -54,7 +52,7 @@ public class Fragment_Bai_Hat_Hot extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<SongWithHeart>> call, Throwable t) {
+            public void onFailure(Call<List<Baihat>> call, Throwable t) {
 
             }
         });

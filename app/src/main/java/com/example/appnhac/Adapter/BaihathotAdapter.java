@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appnhac.Model.SongWithHeart;
+import com.example.appnhac.Model.Baihat;
 import com.example.appnhac.R;
 import com.squareup.picasso.Picasso;
 
@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class BaihathotAdapter extends RecyclerView.Adapter<BaihathotAdapter.ViewHolder> {
     Context context;
-    ArrayList<SongWithHeart> baihatArrayList;
+    ArrayList<Baihat> baihatArrayList;
 
-    public BaihathotAdapter(Context context, ArrayList<SongWithHeart> baihatArrayList) {
+    public BaihathotAdapter(Context context, ArrayList<Baihat> baihatArrayList) {
         this.context = context;
         this.baihatArrayList = baihatArrayList;
     }
@@ -35,7 +35,7 @@ public class BaihathotAdapter extends RecyclerView.Adapter<BaihathotAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        SongWithHeart baihat = baihatArrayList.get(position);
+        Baihat baihat = baihatArrayList.get(position);
         holder.txtcasi.setText(baihat.getCasi());
         holder.txtten.setText(baihat.getTenbaihat());
         Picasso.with(context).load(baihat.getHinhbaihat()).into(holder.imghinh);

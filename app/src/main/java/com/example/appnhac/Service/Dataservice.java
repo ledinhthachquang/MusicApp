@@ -7,7 +7,7 @@ import com.example.appnhac.Model.Album;
 
 import com.example.appnhac.Model.Quangcao;
 import com.example.appnhac.Model.Playlist;
-import com.example.appnhac.Model.SongWithHeart;
+import com.example.appnhac.Model.Baihat;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public interface Dataservice {
     Call<List<Album>> GetAlbumHot();
 
     @GET("baihatduocthich.php")
-    Call<List<SongWithHeart>> GetBaiHatHot();
+    Call<List<Baihat>> GetBaiHatHot();
 
     @FormUrlEncoded
     @POST("danhsachbaihat.php")

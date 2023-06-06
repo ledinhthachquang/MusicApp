@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAdapter.DanhsachbaihatViewHolder> {
     @NonNull
-    @Override
     Context context;
     ArrayList<Baihat> mangbaihat;
 
