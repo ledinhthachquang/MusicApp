@@ -1,5 +1,6 @@
 package com.example.appnhac.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.appnhac.Activity.DanhsachbaihatActivity;
+import com.example.appnhac.Activity.DanhsachtatcachudeActivity;
 import com.example.appnhac.Model.ChuDe;
 import com.example.appnhac.Model.ChuDeVaTheLoai;
 import com.example.appnhac.Model.TheLoai;
@@ -36,7 +39,7 @@ public class    Fragment_ChuDeVaTheLoai extends Fragment {
 
     View view;
     HorizontalScrollView horizontalScrollView;
-    TextView txtxemthemchudevatheloai;
+    TextView txtxemthemchudetheloai;
 
 
     @Override
@@ -45,7 +48,13 @@ public class    Fragment_ChuDeVaTheLoai extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_chu_de_va_the_loai,container,false);
         horizontalScrollView = view.findViewById(R.id.horizontalScrollview);
-        txtxemthemchudevatheloai = view.findViewById(R.id.textviewviewmorechude);
+        txtxemthemchudetheloai = view.findViewById(R.id.textviewviewmorechude);
+        txtxemthemchudetheloai.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), DanhsachtatcachudeActivity.class);
+                startActivity(intent);
+            }
+        });
         getData();
         return view;
     }
@@ -78,17 +87,26 @@ public class    Fragment_ChuDeVaTheLoai extends Fragment {
                     cardView.addView(imageView);
                     linearLayout.addView(cardView);
                 }
-                for(int i = 0;i<(theLoaiArrayList.size());i++){
+                for(int j = 0;j<(theLoaiArrayList.size());j++){
                     CardView cardView = new CardView(getActivity());
                     cardView.setRadius(10);
                     ImageView imageView = new ImageView(getActivity());
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    if(theLoaiArrayList.get(i).getHinhTheLoai() != null){
-                        Picasso.with(getActivity()).load(theLoaiArrayList.get(i).getHinhTheLoai()).into(imageView);
+                    if(theLoaiArrayList.get(j).getHinhTheLoai() != null){
+                        Picasso.with(getActivity()).load(theLoaiArrayList.get(j).getHinhTheLoai()).into(imageView);
                     }
                     cardView.setLayoutParams(layout);
                     cardView.addView(imageView);
                     linearLayout.addView(cardView);
+                    final int finalJ = j;
+                    imageView.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v){
+                            Intent intent = new Intent(getActivity(), DanhsachbaihatActivity.class);
+                            intent.putExtra("idtheloai", theLoaiArrayList.get(finalJ));
+                            startActivity(intent);
+                        }
+                    });
                 }
                 horizontalScrollView.addView(linearLayout);
             }
