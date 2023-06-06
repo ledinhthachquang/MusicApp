@@ -48,6 +48,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     ImageView imgdanhsachcakhuc;
 
     DanhsachbaihatAdapter danhsachbaihatAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,5 +127,6 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                  Toast.makeText(this,quangcao.getTenBaiHat(),Toast.LENGTH_SHORT).show();
              }
          }
+
     }
 }
