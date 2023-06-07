@@ -1,5 +1,6 @@
 package com.example.appnhac.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import com.example.appnhac.Adapter.DanhsachbaihatAdapter;
 import com.example.appnhac.Model.Baihat;
 import com.example.appnhac.Model.Playlist;
 import com.example.appnhac.Model.Quangcao;
+import com.example.appnhac.Model.TheLoai;
 import com.example.appnhac.R;
 import com.example.appnhac.Service.APIService;
 import com.example.appnhac.Service.Dataservice;
@@ -51,17 +53,22 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     DanhsachbaihatAdapter danhsachbaihatAdapter;
 
     Playlist playlist;
+    TheLoai theLoai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danhsachbaihat);
-        DateIntent();
+        DataIntent();
         anhxa();
         initialize();
         if (quangcao != null && !quangcao.getTenBaiHat().equals("")){
             setValueInView(quangcao.getTenBaiHat(),quangcao.getHinhBaiHat() );
             GetDataQuangcao(quangcao.getIdQuangCao());
+        }
+        if(theLoai != null && !theLoai.getTenTheLoai().equals("")){
+            setValueInView(theLoai.getTenTheLoai(), theLoai.getHinhTheLoai());
+            Getdatatheloai(theLoai.getIdTheLoai());
         }
         if (playlist != null && !playlist.getTen().equals("")){
             setValueInView(playlist.getTen(),playlist.getHinh());
@@ -88,9 +95,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         });
     }
 
-    private void GetDataQuangcao(String idquangcao) {
+    private void Getdatatheloai(String idtheloai) {
         Dataservice dataservice = APIService.getService();
-        Call<List<Baihat>> callback = dataservice.GetDanhsachbaihattheoquangcao(idquangcao);
+        Call<List<Baihat>> callback = dataservice.GetDanhsachbaihattheotheloai(idtheloai);
         callback.enqueue(new Callback<List<Baihat>>() {
             @Override
             public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
@@ -102,6 +109,26 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Baihat>> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+    private void GetDataQuangcao(String idquangcao) {
+        Dataservice dataservice = APIService.getService();
+        Call<List<Baihat>> callback = dataservice.GetDanhsachbaihattheoquangcao(idquangcao);
+        callback.enqueue(new Callback<List<Baihat>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Baihat>> call, @NonNull Response<List<Baihat>> response) {
+                mangbaihat = (ArrayList<Baihat>) response.body();
+                danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Baihat>> call, Throwable t) {
 
             }
         });
@@ -145,15 +172,19 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         imgdanhsachcakhuc = findViewById(R.id.imageviewdanhsachcakhuc);
     }
 
-    private void DateIntent(){
+    private void DataIntent(){
          Intent intent = getIntent();
          if(intent != null){
              if(intent.hasExtra("banner")){
                  quangcao = (Quangcao) intent.getSerializableExtra("banner");
-                 Toast.makeText(this,quangcao.getTenBaiHat(),Toast.LENGTH_SHORT).show();
+
              }
-             if (intent.hasExtra("itemplaylist")){
+             if(intent.hasExtra("itemplaylist")){
                  playlist = (Playlist) intent.getSerializableExtra("itemplaylist");
+             }
+
+             if(intent.hasExtra("idtheloai")){
+                 theLoai = (TheLoai) intent.getSerializableExtra("idtheloai");
              }
          }
 

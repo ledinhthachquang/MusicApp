@@ -25,6 +25,7 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
         this.mangbaihat = mangbaihat;
     }
 
+    @NonNull
     public DanhsachbaihatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.dong_danh_sach_bai_hat,parent,false);
