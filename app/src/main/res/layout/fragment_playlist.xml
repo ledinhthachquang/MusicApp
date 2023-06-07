@@ -12,11 +12,12 @@
         android:id="@+id/textviewplaylist"
         android:textColor="#3e3b3b"
         android:textSize="20sp"
+        android:gravity="center"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/play_list_today" />
+        android:text="PLAY LIST ĐỀ XUẤT" />
 
     <ListView
         android:layout_below="@id/textviewplaylist"

@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.appnhac.Adapter.DanhsachbaihatAdapter;
 import com.example.appnhac.Model.Baihat;
+import com.example.appnhac.Model.Playlist;
 import com.example.appnhac.Model.Quangcao;
 import com.example.appnhac.R;
 import com.example.appnhac.Service.APIService;
@@ -49,6 +50,8 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
     DanhsachbaihatAdapter danhsachbaihatAdapter;
 
+    Playlist playlist;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,29 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInView(quangcao.getTenBaiHat(),quangcao.getHinhBaiHat() );
             GetDataQuangcao(quangcao.getIdQuangCao());
         }
+        if (playlist != null && !playlist.getTen().equals("")){
+            setValueInView(playlist.getTen(),playlist.getHinh());
+            GetDataPlaylist(playlist.getIdPlaylist());
+        }
+    }
+
+    private void GetDataPlaylist(String idplaylist) {
+        Dataservice dataservice = APIService.getService();
+        Call<List<Baihat>> callback = dataservice.GetDanhsachbaihattheoplaylist(idplaylist);
+        callback.enqueue(new Callback<List<Baihat>>() {
+            @Override
+            public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
+                mangbaihat = (ArrayList<Baihat>) response.body();
+                danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Baihat>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void GetDataQuangcao(String idquangcao) {
@@ -125,6 +151,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
              if(intent.hasExtra("banner")){
                  quangcao = (Quangcao) intent.getSerializableExtra("banner");
                  Toast.makeText(this,quangcao.getTenBaiHat(),Toast.LENGTH_SHORT).show();
+             }
+             if (intent.hasExtra("itemplaylist")){
+                 playlist = (Playlist) intent.getSerializableExtra("itemplaylist");
              }
          }
 
