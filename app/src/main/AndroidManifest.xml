@@ -14,10 +14,15 @@
         android:theme="@style/Theme.AppNhac"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.DanhsachtatcaAlbumActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DanhsachtheloaitheochudeActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DanhsachtatcachudeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DanhsachcacplaylistActivity"
             android:exported="false" />
         <activity
