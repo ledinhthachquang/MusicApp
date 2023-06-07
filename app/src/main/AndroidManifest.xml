@@ -18,6 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.DanhsachtatcachudeActivity"
+            android:name=".Activity.DanhsachcacplaylistActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DanhsachbaihatActivity"

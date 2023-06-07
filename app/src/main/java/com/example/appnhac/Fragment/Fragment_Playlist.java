@@ -1,5 +1,6 @@
 package com.example.appnhac.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,9 +10,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.appnhac.Activity.DanhsachbaihatActivity;
+import com.example.appnhac.Activity.DanhsachcacplaylistActivity;
 import com.example.appnhac.Adapter.PlayListAdapter;
 import com.example.appnhac.Model.Playlist;
 import com.example.appnhac.R;
@@ -43,6 +47,13 @@ public class Fragment_Playlist extends Fragment {
         txtviewplaylist = view.findViewById(R.id.textviewplaylist);
         txtviewmoreplaylist = view.findViewById(R.id.textviewviewmoreplaylist);
         getData();
+        txtviewmoreplaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DanhsachcacplaylistActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -55,7 +66,14 @@ public class Fragment_Playlist extends Fragment {
              mangplaylist = (ArrayList<Playlist>) response.body();
              playListAdapter = new PlayListAdapter(getActivity(), android.R.layout.simple_list_item_1,mangplaylist);
              lvplaylist.setAdapter(playListAdapter);
-
+             lvplaylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                 @Override
+                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                     Intent intent = new Intent(getActivity(), DanhsachbaihatActivity.class);
+                     intent.putExtra("itemplaylist",mangplaylist.get(i));
+                     startActivity(intent);
+                 }
+             });
             }
 
             @Override
