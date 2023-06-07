@@ -18,6 +18,8 @@
             android:exported="false" />
         <activity
             android:name=".Activity.DanhsachtatcachudeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DanhsachcacplaylistActivity"
             android:exported="false" />
         <activity
