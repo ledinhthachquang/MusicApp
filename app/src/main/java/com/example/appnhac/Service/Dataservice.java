@@ -8,6 +8,7 @@ import com.example.appnhac.Model.Album;
 import com.example.appnhac.Model.Quangcao;
 import com.example.appnhac.Model.Playlist;
 import com.example.appnhac.Model.Baihat;
+import com.example.appnhac.Model.TheLoai;
 
 import java.util.List;
 
@@ -52,7 +53,16 @@ public interface Dataservice {
     @GET("danhsachcacplaylist.php")
     Call<List<Playlist>> GetDanhsachcacPlaylist();
 
+
+    @FormUrlEncoded
+    @POST("theloaitheochude.php")
+    Call<List<TheLoai>> GetTheloaitheochude(@Field("idchude") String idchude);
+
+    @GET("tatcaalbum.php")
+    Call<List<Album>> GetAllAlbum();
+
     @FormUrlEncoded
     @POST("updateluotthich.php")
     Call<String> UpdateLuotThich(@Field("luotthich") String luotthich, @Field("idbaihat") String idbaihat);
+
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.appnhac.Activity.DanhsachbaihatActivity;
 import com.example.appnhac.Activity.DanhsachtatcachudeActivity;
+import com.example.appnhac.Activity.DanhsachtheloaitheochudeActivity;
 import com.example.appnhac.Model.ChuDe;
 import com.example.appnhac.Model.ChuDeVaTheLoai;
 import com.example.appnhac.Model.TheLoai;
@@ -86,6 +87,15 @@ public class    Fragment_ChuDeVaTheLoai extends Fragment {
                     cardView.setLayoutParams(layout);
                     cardView.addView(imageView);
                     linearLayout.addView(cardView);
+                    int finalI = i;
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), DanhsachtheloaitheochudeActivity.class);
+                            intent.putExtra("chude",chuDeArrayList.get(finalI));
+                            startActivity(intent);
+                        }
+                    });
                 }
                 for(int j = 0;j<(theLoaiArrayList.size());j++){
                     CardView cardView = new CardView(getActivity());
