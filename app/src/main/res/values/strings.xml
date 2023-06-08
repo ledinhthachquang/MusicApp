@@ -14,4 +14,5 @@
     <string name="nhac_nhat_hot">Nhac Nhat Hot</string>
     <string name="various_artist">Various Artist</string>
     <string name="music">Music</string>
+    <string name="no_song_data">Không có dữ liệu bài hát</string>
 </resources>
