@@ -16,6 +16,9 @@
         <activity
             android:name=".Activity.DanhsachtatcaAlbumActivity"
             android:exported="false" />
+           <activity
+            android:name=".Activity.PlayNhacAcitvity"
+            android:exported="false" />
         <activity
             android:name=".Activity.DanhsachtheloaitheochudeActivity"
             android:exported="false" />
