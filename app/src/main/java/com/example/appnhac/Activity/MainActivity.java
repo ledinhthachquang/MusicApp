@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import com.example.appnhac.Adapter.MainViewPagerAdapter;
 import com.example.appnhac.Fragment.Fragment_Home;
-import com.example.appnhac.Fragment.Fragment_search;
+import com.example.appnhac.Fragment.Fragment_Tim_Kiem;
 import com.example.appnhac.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(this);
         mainViewPagerAdapter.addFragment(new Fragment_Home(), "Trang Chu");
-        mainViewPagerAdapter.addFragment(new Fragment_search(), "Tim kiem");
+        mainViewPagerAdapter.addFragment(new Fragment_Tim_Kiem(), "Tim kiem");
         viewPager.setAdapter(mainViewPagerAdapter);
 
         new TabLayoutMediator(tabLayout, viewPager,
