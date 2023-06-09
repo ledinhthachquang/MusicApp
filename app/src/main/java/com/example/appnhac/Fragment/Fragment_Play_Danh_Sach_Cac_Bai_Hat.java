@@ -15,7 +15,7 @@ import com.example.appnhac.Activity.PlayNhacAcitvity;
 import com.example.appnhac.Adapter.PlaynhacAdapter;
 import com.example.appnhac.R;
 
-public class Fragement_Play_Danh_Sach_Cac_Bai_Hat extends Fragment {
+public class Fragment_Play_Danh_Sach_Cac_Bai_Hat extends Fragment {
     View view;
     RecyclerView recyclerViewplaynhac;
     PlaynhacAdapter playnhacAdapter;

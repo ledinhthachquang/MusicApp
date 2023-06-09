@@ -11,8 +11,6 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -20,15 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appnhac.Adapter.ViewPagerPlaylistnhac;
-import com.example.appnhac.Fragment.Fragement_Play_Danh_Sach_Cac_Bai_Hat;
 import com.example.appnhac.Fragment.Fragment_Dia_Nhac;
+import com.example.appnhac.Fragment.Fragment_Play_Danh_Sach_Cac_Bai_Hat;
 import com.example.appnhac.Model.Baihat;
 import com.example.appnhac.R;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class PlayNhacAcitvity extends AppCompatActivity {
@@ -42,7 +39,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
     public static ArrayList<Baihat> mangbaihat = new ArrayList<>();
     public static ViewPagerPlaylistnhac adapternhac;
     Fragment_Dia_Nhac fragment_dia_nhac;
-    Fragement_Play_Danh_Sach_Cac_Bai_Hat fragement_play_danh_sach_cac_bai_hat;
+    Fragment_Play_Danh_Sach_Cac_Bai_Hat fragment_play_danh_sach_cac_bai_hat;
     MediaPlayer mediaPlayer;
     int position = 0;
     boolean repeat = false;
@@ -52,8 +49,8 @@ public class PlayNhacAcitvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_nhac_acitvity);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
         GetDataFromIntent();
         Init();
         eventClick();
@@ -270,12 +267,13 @@ public class PlayNhacAcitvity extends AppCompatActivity {
         });
         toolbarplaynhac.setTitleTextColor(Color.WHITE);
         fragment_dia_nhac = new Fragment_Dia_Nhac();
-        fragement_play_danh_sach_cac_bai_hat = new Fragement_Play_Danh_Sach_Cac_Bai_Hat();
+        fragment_play_danh_sach_cac_bai_hat = new Fragment_Play_Danh_Sach_Cac_Bai_Hat();
         adapternhac = new ViewPagerPlaylistnhac(getSupportFragmentManager());
+
+        adapternhac.AddFragment(fragment_play_danh_sach_cac_bai_hat);
         adapternhac.AddFragment(fragment_dia_nhac);
-        adapternhac.AddFragment(fragement_play_danh_sach_cac_bai_hat);
         viewPagerplaynhac.setAdapter(adapternhac);
-        fragment_dia_nhac = (Fragment_Dia_Nhac) adapternhac.getItem(0);
+        fragment_dia_nhac = (Fragment_Dia_Nhac) adapternhac.getItem(1);
         if (mangbaihat.size() > 0){
             getSupportActionBar().setTitle(mangbaihat.get(0).getTenbaihat());
             new PlayMp3().execute(mangbaihat.get(0).getLinkbaihat());
@@ -291,42 +289,52 @@ public class PlayNhacAcitvity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.stop();
-                    mediaPlayer.reset();
-                }
-            });
-        }
-
-        @Override
         protected void onPostExecute(String baihat) {
             super.onPostExecute(baihat);
             try {
-                mediaPlayer.setDataSource(baihat);
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                mediaPlayer = new MediaPlayer();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mediaPlayer.start();
-                        TimeSong();
-                        UpdateTime();
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        mediaPlayer.stop();
+                        mediaPlayer.reset();
                     }
                 });
+                mediaPlayer.setDataSource(baihat);
+                mediaPlayer.prepare();
             } catch (IOException e) {
-                Log.e("PlayNhacActivity", "Failed to prepare MediaPlayer", e);
-                Toast.makeText(PlayNhacAcitvity.this, "Failed to play the audio: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                Log.e("PlayNhacActivity", "Unexpected error occurred", e);
-                Toast.makeText(PlayNhacAcitvity.this, "An unexpected error occurred: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                throw new RuntimeException(e);
             }
+            mediaPlayer.start();
+            TimeSong();
+
+
         }
     }
+//        @Override
+//        protected void onPostExecute(String baihat) {
+//            super.onPostExecute(baihat);
+//            try {
+//                mediaPlayer.setDataSource(baihat);
+//                mediaPlayer.prepareAsync();
+//                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                    @Override
+//                    public void onPrepared(MediaPlayer mp) {
+//                        mediaPlayer.start();
+//                        TimeSong();
+//                        UpdateTime();
+//                    }
+//                });
+//            } catch (IOException e) {
+//                Log.e("PlayNhacActivity", "Failed to prepare MediaPlayer", e);
+//                Toast.makeText(PlayNhacAcitvity.this, "Failed to play the audio: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//            } catch (Exception e) {
+//                Log.e("PlayNhacActivity", "Unexpected error occurred", e);
+//                Toast.makeText(PlayNhacAcitvity.this, "An unexpected error occurred: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
 
 
     private void TimeSong() {
