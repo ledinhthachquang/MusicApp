@@ -6,6 +6,8 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,13 +28,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchBaiHatAdapter extends RecyclerView.Adapter<SearchBaiHatAdapter.SearchBaiHatViewHolder>{
+public class SearchBaiHatAdapter extends RecyclerView.Adapter<SearchBaiHatAdapter.SearchBaiHatViewHolder> implements Filterable {
     Context context;
     ArrayList<Baihat> mangbaihat;
+    ArrayList<Baihat> mangbaihatold;
 
     public SearchBaiHatAdapter(Context context, ArrayList<Baihat> mangbaihat) {
         this.context = context;
         this.mangbaihat = mangbaihat;
+        this.mangbaihatold = mangbaihat;
     }
 
     @NonNull
@@ -56,6 +60,36 @@ public class SearchBaiHatAdapter extends RecyclerView.Adapter<SearchBaiHatAdapte
     @Override
     public int getItemCount() {
         return mangbaihat.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch = charSequence.toString();
+                if(strSearch.isEmpty()){
+                    mangbaihat = mangbaihatold;
+                }else{
+                    ArrayList<Baihat> listbaihat = new ArrayList<>();
+                    for (Baihat baihat : mangbaihatold){
+                        if(baihat.getTenbaihat().toLowerCase().contains(strSearch.toLowerCase())){
+                            listbaihat.add(baihat);
+                        }
+                    }
+                    mangbaihat = listbaihat;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mangbaihat;
+                return null;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mangbaihat = (ArrayList<Baihat>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class SearchBaiHatViewHolder extends RecyclerView.ViewHolder{

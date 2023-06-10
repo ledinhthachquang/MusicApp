@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
+
 import android.widget.TextView;
 
 import com.example.appnhac.Adapter.SearchBaiHatAdapter;
@@ -33,11 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_Tim_Kiem#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Fragment_Tim_Kiem extends Fragment {
 
     View view;
@@ -56,7 +53,7 @@ public class Fragment_Tim_Kiem extends Fragment {
         recyclerViewsearchbaihat = view.findViewById(R.id.recyclerviewsearchbaihat);
         txtkhongcodulieu = view.findViewById(R.id.textviewkhongcodulieu);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("");
+        toolbar.setTitle("Tìm kiếm bài hát");
         setHasOptionsMenu(true);
         return view;
     }
@@ -71,11 +68,12 @@ public class Fragment_Tim_Kiem extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 SearchTuKhoaBaiHat(s);
-                return true;
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+                SearchTuKhoaBaiHat(s);
                 return false;
             }
         });
@@ -91,6 +89,7 @@ public class Fragment_Tim_Kiem extends Fragment {
                 ArrayList<Baihat> mangbaihat = (ArrayList<Baihat>) response.body();
                 if(mangbaihat.size()>0){
                     searchBaiHatAdapter = new SearchBaiHatAdapter(getActivity(),mangbaihat);
+
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     recyclerViewsearchbaihat.setLayoutManager(linearLayoutManager);
                     recyclerViewsearchbaihat.setAdapter(searchBaiHatAdapter);
@@ -108,4 +107,6 @@ public class Fragment_Tim_Kiem extends Fragment {
             }
         });
     }
+
+
 }
