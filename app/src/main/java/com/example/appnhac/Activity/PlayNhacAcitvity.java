@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -49,8 +50,8 @@ public class PlayNhacAcitvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_nhac_acitvity);
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         GetDataFromIntent();
         Init();
         eventClick();
@@ -304,7 +305,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                 mediaPlayer.setDataSource(baihat);
                 mediaPlayer.prepare();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
             mediaPlayer.start();
             TimeSong();
@@ -359,7 +360,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                             try {
                                 Thread.sleep(1000);
                             } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
+                                e.printStackTrace();
                             }
                         }
                     });
@@ -407,9 +408,9 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                     },4000);
                     next = false;
                     handler1.removeCallbacks(this);
-                    }else {
-                        handler1.postDelayed(this,1000);
-                    }
+                }else {
+                    handler1.postDelayed(this,1000);
+                }
             }
         },1000);
     }

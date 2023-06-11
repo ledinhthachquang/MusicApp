@@ -15,10 +15,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.appnhac.Adapter.DanhsachbaihatAdapter;
+import com.example.appnhac.Model.Album;
 import com.example.appnhac.Model.Baihat;
 import com.example.appnhac.Model.Playlist;
 import com.example.appnhac.Model.Quangcao;
@@ -55,6 +56,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
     Playlist playlist;
     TheLoai theLoai;
+    Album album;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,30 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInView(playlist.getTen(),playlist.getHinh());
             GetDataPlaylist(playlist.getIdPlaylist());
         }
+        if (album != null && !album.getTenAlbum().equals("")){
+            setValueInView(album.getTenAlbum(),album.getHinhanhAlbum());
+            GetDataAlbum(album.getIdAlbum());
+        }
+    }
+
+    private void GetDataAlbum(String idAlbum) {
+        Dataservice dataservice = APIService.getService();
+        Call<List<Baihat>> callback = dataservice.GetDanhsachbaihattheoalbum(idAlbum);
+        callback.enqueue(new Callback<List<Baihat>>() {
+            @Override
+            public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
+                mangbaihat = (ArrayList<Baihat>) response.body();
+                danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+                eventClick();
+            }
+
+            @Override
+            public void onFailure(Call<List<Baihat>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void GetDataPlaylist(String idplaylist) {
@@ -192,6 +218,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
              if(intent.hasExtra("idtheloai")){
                  theLoai = (TheLoai) intent.getSerializableExtra("idtheloai");
+             }
+             if (intent.hasExtra("album")){
+                album = (Album) intent.getSerializableExtra("album");
              }
          }
 
