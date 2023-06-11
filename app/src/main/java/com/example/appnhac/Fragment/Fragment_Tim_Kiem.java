@@ -67,14 +67,17 @@ public class Fragment_Tim_Kiem extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                SearchTuKhoaBaiHat(s);
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                SearchTuKhoaBaiHat(s);
-                return false;
+                if (!s.trim().equals("")){
+                    SearchTuKhoaBaiHat(s);
+                }
+
+                return true;
             }
         });
         super.onCreateOptionsMenu(menu, inflater);
