@@ -3,36 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#24293E"
     tools:context=".Fragment.Fragment_ChuDeVaTheLoai">
+
     <RelativeLayout
         android:id="@+id/relativechudetheloai"
-        android:padding="7dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#24293E"
+        android:padding="7dp">
 
-    <!-- TODO: Update blank fragment layout -->
+        <!-- TODO: Update blank fragment layout -->
         <TextView
 
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chudetheloai" />
+            android:text="@string/chudetheloai"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textviewviewmorechude"
-            android:layout_alignParentEnd="true"
-            android:textColor="#913677"
-            android:textSize="18sp"
-            android:text="@string/view_more"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/view_more"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </RelativeLayout>
+
     <HorizontalScrollView
-        android:scrollbars="none"
-        android:layout_below="@+id/relativechudetheloai"
         android:id="@+id/horizontalScrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativechudetheloai"
+        android:scrollbars="none" />
 
 </RelativeLayout>

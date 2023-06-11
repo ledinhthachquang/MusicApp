@@ -10,14 +10,14 @@
     <TextView
 
         android:id="@+id/textviewplaylist"
-        android:textColor="#3e3b3b"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PLAY LIST ĐỀ XUẤT" />
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="PLAY LIST ĐỀ XUẤT"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <ListView
         android:layout_below="@id/textviewplaylist"
@@ -35,8 +35,8 @@
         android:drawableLeft="@drawable/more"
         android:drawablePadding="10dp"
         android:text="@string/view_more"
-        android:textColor="#3e3b3b"
-        android:textSize="20sp"/>
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

@@ -9,13 +9,13 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager"
-            android:background="@color/black"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:contentDescription="ViewPager for displaying images" >
+            android:background="@color/black"
+            android:contentDescription="ViewPager for displaying images">
 
         </androidx.viewpager2.widget.ViewPager2>
-<!--        <me.relex.circleindicator.CircleIndicator-->
+        <!--        <me.relex.circleindicator.CircleIndicator-->
 <!--            android:id="@+id/indicatordefault"-->
 <!--            android:layout_alignParentRight="true"-->
 <!--            android:layout_marginTop="10dp"-->
