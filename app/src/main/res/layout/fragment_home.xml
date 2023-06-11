@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
+    android:background="@drawable/custom_background_home"
     android:fillViewport="true"
-    android:background="#C8C8C8"
-    >
+    android:scrollbars="none">
+
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#24293E"
+        android:orientation="vertical">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="com.example.appnhac.Fragment.heading_home"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            tools:layout="@layout/fragment_heading_home" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentbanner"
@@ -19,29 +28,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_banner" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentplaylist"
             android:name="com.example.appnhac.Fragment.Fragment_Playlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_banner" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentchdetheloai"
             android:name="com.example.appnhac.Fragment.Fragment_ChuDeVaTheLoai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#24293E"
             tools:layout="@layout/fragment_chu_de_va_the_loai" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentalbum"
             android:name="com.example.appnhac.Fragment.Fragment_Album_Hot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_banner" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentbaihathot"
             android:name="com.example.appnhac.Fragment.Fragment_Bai_Hat_Hot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_banner" />
+
     </LinearLayout>
 </ScrollView>
