@@ -26,13 +26,14 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/iconlove"
         android:id="@+id/imageviewSearchluotthich"
         android:layout_width="30dp"
-        android:layout_height="30dp"/>
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/iconlove"
+        app:tint="@color/white" />
 
     <TextView
 
