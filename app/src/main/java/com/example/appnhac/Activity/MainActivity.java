@@ -3,20 +3,20 @@ package com.example.appnhac.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.os.Bundle;
-
 import com.example.appnhac.Adapter.MainViewPagerAdapter;
+import com.example.appnhac.Fragment.Fragment_Downloads;
 import com.example.appnhac.Fragment.Fragment_Home;
+import com.example.appnhac.Fragment.Fragment_MyLibrary;
 import com.example.appnhac.Fragment.Fragment_Tim_Kiem;
 import com.example.appnhac.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    TabLayout tabLayout;
     ViewPager2 viewPager;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +27,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        tabLayout = findViewById(R.id.myTabLayout);
         viewPager = findViewById(R.id.myViewPager);
+        tabLayout = findViewById(R.id.myTabLayout);
     }
 
     private void init() {
         MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(this);
-        mainViewPagerAdapter.addFragment(new Fragment_Home(), "Trang Chu");
-        mainViewPagerAdapter.addFragment(new Fragment_Tim_Kiem(), "Tim kiem");
+        mainViewPagerAdapter.addFragment(new Fragment_Home(), "Home");
+        mainViewPagerAdapter.addFragment(new Fragment_Tim_Kiem(), "Search");
+        mainViewPagerAdapter.addFragment(new Fragment_MyLibrary(),"My Library");
+        mainViewPagerAdapter.addFragment(new Fragment_Downloads(), "Downloads");
         viewPager.setAdapter(mainViewPagerAdapter);
 
-        new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> tab.setIcon(position == 0 ? R.drawable.icontrangchu : R.drawable.icontimkiem))
-                .attach();
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager,
+                (tab, position) -> {
+                    switch (position) {
+                        case 0:
+                            tab.setIcon(R.drawable.icontrangchu);
+                            break;
+                        case 1:
+                            tab.setIcon(R.drawable.icontimkiem);
+                            break;
+                        case 2:
+                            tab.setIcon(R.drawable.icon_library);
+                            break;
+                        case 3:
+                            tab.setIcon(R.drawable.icon_downloads);
+                            break;
+                    }
+                });
+
+        tabLayoutMediator.attach();
+        viewPager.setUserInputEnabled(false); // Disable swiping between pages
     }
 }
