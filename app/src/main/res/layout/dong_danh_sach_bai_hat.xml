@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:elevation="5dp">
+    android:background="@drawable/custom_background_home"
+    android:elevation="5dp"
+    app:cardCornerRadius="15dp">
+
     <RelativeLayout
-        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_background_home"
+        android:padding="10dp">
+
         <TextView
-            android:layout_margin="15dp"
             android:id="@+id/textviewdanhsachindex"
-            android:textSize="20sp"
-            android:text="@string/one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/textviewtenbaihat"
-            android:textSize="20sp"
-            android:text="@string/dummy_tenbaihat"
-            android:textColor="#030303"
-            android:layout_toEndOf="@id/textviewdanhsachindex"
-            android:singleLine="true"
-            android:maxWidth="250dp"
-            android:ellipsize="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:ignore="RelativeOverlap" />
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/one"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
         <TextView
-            android:text="@string/dummy_tencasi"
-            android:textSize="20sp"
-            android:textColor="#030303"
-            android:ellipsize="end"
-            android:layout_toEndOf="@id/textviewdanhsachindex"
-            android:id="@+id/textviewtencasi"
-            android:layout_below="@id/textviewtenbaihat"
+            android:id="@+id/textviewtenbaihat"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/textviewdanhsachindex"
+            android:ellipsize="end"
+            android:maxWidth="250dp"
+            android:singleLine="true"
+            android:text="@string/dummy_tenbaihat"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/textviewtencasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textviewtenbaihat"
+            android:layout_toEndOf="@id/textviewdanhsachindex"
+            android:ellipsize="end"
+            android:text="@string/dummy_tencasi"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
         <ImageView
-            android:src="@drawable/iconlove"
-            android:layout_marginEnd="5dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
             android:id="@+id/imageviewluotthichdanhsachbaihat"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/iconlove"
+            app:tint="@color/white" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
