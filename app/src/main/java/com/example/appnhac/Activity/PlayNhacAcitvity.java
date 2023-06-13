@@ -46,6 +46,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
     boolean repeat = false;
     boolean checkrandom = false;
     boolean next = false;
+    boolean isPlaying = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +79,13 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                 if (mediaPlayer.isPlaying()){
                     mediaPlayer.pause();
                     imgplay.setImageResource(R.drawable.iconplay);
+                    isPlaying = false;
+                    fragment_dia_nhac.Pausenhac();
                 }else {
                     mediaPlayer.start();
                     imgplay.setImageResource(R.drawable.iconpause);
+                    isPlaying = true;
+                    fragment_dia_nhac.Playnhac(mangbaihat.get(position).getHinhbaihat());
                 }
             }
         });
