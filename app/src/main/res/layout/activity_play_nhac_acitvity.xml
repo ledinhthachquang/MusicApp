@@ -79,6 +79,7 @@
                 android:id="@+id/imagebuttonsuffle"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginRight="15dp"
                 android:background="@null"
                 android:scaleType="fitXY"
@@ -86,8 +87,8 @@
 
             <ImageButton
                 android:id="@+id/imagebuttonpre"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@null"
                 android:scaleType="fitXY"
@@ -98,15 +99,15 @@
                 android:id="@+id/imagebuttonplay"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="13dp"
                 android:background="@null"
                 android:scaleType="fitXY"
                 android:src="@drawable/iconplay" />
 
             <ImageButton
                 android:id="@+id/imagebuttonnext"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@null"
                 android:scaleType="fitXY"
@@ -114,8 +115,8 @@
 
             <ImageButton
                 android:id="@+id/imagebuttonrepeat"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="15dp"
                 android:background="@null"
                 android:scaleType="fitXY"

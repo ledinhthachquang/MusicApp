@@ -87,7 +87,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (repeat == false){
-                    if (checkrandom == true){
+                   if (checkrandom == true){
                         checkrandom =false;
                         imgrepeat.setImageResource(R.drawable.iconsyned);
                         imgrandom.setImageResource(R.drawable.iconsuffle);
