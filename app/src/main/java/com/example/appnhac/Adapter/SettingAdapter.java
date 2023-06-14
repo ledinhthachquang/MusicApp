@@ -16,12 +16,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHolder> {
+public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHolder> {
 
     private Context context;
     private List<Baihat> downloadList;
 
-    public DownloadAdapter(Context context, List<Baihat> downloadList) {
+    public SettingAdapter(Context context, List<Baihat> downloadList) {
         this.context = context;
         this.downloadList = downloadList;
     }
@@ -29,7 +29,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_download, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_setting, parent, false);
         return new ViewHolder(view);
     }
 
