@@ -54,6 +54,15 @@ public class Fragment_Playlist extends Fragment {
                 startActivity(intent);
             }
         });
+        view.setOnTouchListener(new OnTouchListener(){
+
+        @Override
+        public boolean onTouch(View arg0, MotionEvent arg1) {
+            // this will make sure event is not propagated to others, nesting same view area
+            return true;
+        }
+
+    });
         return view;
     }
 
