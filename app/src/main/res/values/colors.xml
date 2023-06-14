@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="mautim">#a845de</color>
+    <color name="search_background_color">#D9D9D9</color>
 </resources>
