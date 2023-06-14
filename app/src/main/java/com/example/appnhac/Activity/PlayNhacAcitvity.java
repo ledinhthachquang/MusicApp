@@ -271,7 +271,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                 mangbaihat.clear();
             }
         });
-        toolbarplaynhac.setTitleTextColor(Color.WHITE);
+        toolbarplaynhac.setTitleTextColor(Color.BLACK);
         fragment_dia_nhac = new Fragment_Dia_Nhac();
         fragment_play_danh_sach_cac_bai_hat = new Fragment_Play_Danh_Sach_Cac_Bai_Hat();
         adapternhac = new ViewPagerPlaylistnhac(getSupportFragmentManager());

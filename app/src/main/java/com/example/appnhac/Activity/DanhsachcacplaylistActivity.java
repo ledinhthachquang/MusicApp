@@ -59,7 +59,7 @@ public class DanhsachcacplaylistActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Play Lists");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.purple_200));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
