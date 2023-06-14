@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mainViewPagerAdapter.addFragment(new Fragment_MyLibrary(),"My Library");
         mainViewPagerAdapter.addFragment(new Fragment_Setting(), "Downloads");
         viewPager.setAdapter(mainViewPagerAdapter);
-
+        viewPager.setUserInputEnabled(false);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
                     switch (position) {
