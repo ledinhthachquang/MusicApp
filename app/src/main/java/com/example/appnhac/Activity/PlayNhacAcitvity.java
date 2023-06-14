@@ -168,7 +168,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                         if (position > (mangbaihat.size() - 1)){
                             position = 0;
                         }
-                        new PlayMp3().execute(mangbaihat.get(position).getLinkbaihat());
+                        playSong();
                         fragment_dia_nhac.Playnhac(mangbaihat.get(position).getHinhbaihat());
                         getSupportActionBar().setTitle(mangbaihat.get(position).getTenbaihat());
                         UpdateTime();
@@ -214,7 +214,7 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                             position = index;
                         }
 
-                        new PlayMp3().execute(mangbaihat.get(position).getLinkbaihat());
+                        playSong();
                         fragment_dia_nhac.Playnhac(mangbaihat.get(position).getHinhbaihat());
                         getSupportActionBar().setTitle(mangbaihat.get(position).getTenbaihat());
                         UpdateTime();
@@ -300,47 +300,28 @@ public class PlayNhacAcitvity extends AppCompatActivity {
             try {
                 mediaPlayer = new MediaPlayer();
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        mediaPlayer.start();
+                        TimeSong();
+                        UpdateTime();
+                    }
+                });
                 mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
                         mediaPlayer.stop();
-                        mediaPlayer.reset();
                     }
                 });
                 mediaPlayer.setDataSource(baihat);
-                mediaPlayer.prepare();
+                mediaPlayer.prepareAsync();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mediaPlayer.start();
-            TimeSong();
-
-
         }
     }
-//        @Override
-//        protected void onPostExecute(String baihat) {
-//            super.onPostExecute(baihat);
-//            try {
-//                mediaPlayer.setDataSource(baihat);
-//                mediaPlayer.prepareAsync();
-//                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//                    @Override
-//                    public void onPrepared(MediaPlayer mp) {
-//                        mediaPlayer.start();
-//                        TimeSong();
-//                        UpdateTime();
-//                    }
-//                });
-//            } catch (IOException e) {
-//                Log.e("PlayNhacActivity", "Failed to prepare MediaPlayer", e);
-//                Toast.makeText(PlayNhacAcitvity.this, "Failed to play the audio: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            } catch (Exception e) {
-//                Log.e("PlayNhacActivity", "Unexpected error occurred", e);
-//                Toast.makeText(PlayNhacAcitvity.this, "An unexpected error occurred: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
+
 
 
     private void TimeSong() {
@@ -361,14 +342,25 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                     mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mediaPlayer) {
-                            next = true;
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            if (repeat) {
+                                // Restart the current song
+                                playSong();
+                            } else if (checkrandom) {
+                                // Play a random song
+                                Random random = new Random();
+                                position = random.nextInt(mangbaihat.size());
+                                playSong();
+                            } else {
+                                // Play the next song in the list
+                                position++;
+                                if (position >= mangbaihat.size()) {
+                                    position = 0; // Start from the beginning if reached the end
+                                }
+                                playSong();
                             }
                         }
                     });
+
                 }
             }
         },300);
@@ -418,5 +410,11 @@ public class PlayNhacAcitvity extends AppCompatActivity {
                 }
             }
         },1000);
+    }
+    private void playSong() {
+        new PlayMp3().execute(mangbaihat.get(position).getLinkbaihat());
+        fragment_dia_nhac.Playnhac(mangbaihat.get(position).getHinhbaihat());
+        getSupportActionBar().setTitle(mangbaihat.get(position).getTenbaihat());
+        UpdateTime();
     }
 }
