@@ -10,16 +10,15 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:alpha="0.5"
         android:background="@color/white"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="#C8676666"
         app:cardCornerRadius="15dp">
 
         <ImageView
             android:id="@+id/imageviewSearchluotthich"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="350dp"
+            android:layout_marginStart="300dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/iconlove"
             app:tint="@color/white" />
