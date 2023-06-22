@@ -17,4 +17,8 @@
     <string name="no_song_data">Không có dữ liệu bài hát</string>
     <string name="welcome">Xin chào,</string>
     <string name="user_name">user_name</string>
+    <string name="hint_username">Nhập username</string>
+    <string name="hint_email">Nhập email</string>
+    <string name="hint_password">Nhập password</string>
+    <string name="register">Đăng ký</string>
 </resources>

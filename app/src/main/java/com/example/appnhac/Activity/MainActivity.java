@@ -4,7 +4,7 @@ package com.example.appnhac.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.example.appnhac.Adapter.MainViewPagerAdapter;
-import com.example.appnhac.Fragment.Fragment_Setting;
+import com.example.appnhac.Fragment.Fragment_Profile;
 import com.example.appnhac.Fragment.Fragment_Home;
 import com.example.appnhac.Fragment.Fragment_MyLibrary;
 import com.example.appnhac.Fragment.Fragment_Tim_Kiem;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mainViewPagerAdapter.addFragment(new Fragment_Home(), "Home");
         mainViewPagerAdapter.addFragment(new Fragment_Tim_Kiem(), "Search");
         mainViewPagerAdapter.addFragment(new Fragment_MyLibrary(),"My Library");
-        mainViewPagerAdapter.addFragment(new Fragment_Setting(), "Downloads");
+        mainViewPagerAdapter.addFragment(new Fragment_Profile(), "Profile");
         viewPager.setAdapter(mainViewPagerAdapter);
         viewPager.setUserInputEnabled(false);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager,

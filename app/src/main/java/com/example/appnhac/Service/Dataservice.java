@@ -1,6 +1,7 @@
 package com.example.appnhac.Service;
 
 
+import com.example.appnhac.Model.APIResponse;
 import com.example.appnhac.Model.ChuDeVaTheLoai;
 import com.example.appnhac.Model.ChuDe;
 import com.example.appnhac.Model.Album;
@@ -73,5 +74,15 @@ public interface Dataservice {
     @POST("searchbaihat.php")
     Call<List<Baihat>> GetSearchBaihat(@Field("tukhoa") String tukhoa);
 
+    @FormUrlEncoded
+    @POST("dangky.php")
+    Call<APIResponse> performSignUp(@Field("username") String username,
+                                    @Field("password") String password,
+                                    @Field("email") String email);
+
+    @FormUrlEncoded
+    @POST("dangnhap.php")
+    Call<APIResponse> performSignIn(@Field("username") String username,
+                                    @Field("password") String password);
 
 }
