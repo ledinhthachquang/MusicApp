@@ -18,25 +18,15 @@ import com.example.appnhac.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_Setting extends Fragment {
+public class Fragment_Profile extends Fragment {
 
-    private List<Baihat> downloadList;
-    private RecyclerView downloadsRecyclerView;
-    private SettingAdapter downloadAdapter;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_setting, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        downloadsRecyclerView = view.findViewById(R.id.downloadsRecyclerView);
-        downloadsRecyclerView.setHasFixedSize(true);
-        downloadsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        // Initialize download list and adapter
-        downloadList = new ArrayList<>();
-        downloadAdapter = new SettingAdapter(getContext(), downloadList);
-        downloadsRecyclerView.setAdapter(downloadAdapter);
 
         // TODO: Load and populate downloadList with data
 

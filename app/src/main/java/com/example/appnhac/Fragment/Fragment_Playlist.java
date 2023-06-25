@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -54,15 +55,7 @@ public class Fragment_Playlist extends Fragment {
                 startActivity(intent);
             }
         });
-        view.setOnTouchListener(new OnTouchListener(){
 
-        @Override
-        public boolean onTouch(View arg0, MotionEvent arg1) {
-            // this will make sure event is not propagated to others, nesting same view area
-            return true;
-        }
-
-    });
         return view;
     }
 
